@@ -1,13 +1,12 @@
 package com.example.albumsapp.modules.albums.ui
 
 import android.os.Bundle
-import android.text.style.TtsSpan.OrdinalBuilder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.albumsapp.MainActivity
 import com.example.albumsapp.databinding.FragmentHomeBinding
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -32,6 +31,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupAlbumsAdapter()
+    }
+
+    private fun setupAlbumsAdapter() {
+        Timber.i("Setting up albums adapter")
     }
 
     override fun onDestroyView() {

@@ -50,4 +50,8 @@ dependencies {
     //spd and ssp implementation
     implementation libs.sdp.android
     implementation libs.ssp.android
+
+    //timber implementation for logging
+    implementation libs.timber
+
 }
