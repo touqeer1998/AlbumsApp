@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.albumsapp.databinding.FragmentHomeBinding
+import com.example.albumsapp.modules.albums.utils.AlbumsAdapter
 import timber.log.Timber
 
 /**
@@ -15,18 +17,18 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
+    private lateinit var albumAdapter: AlbumsAdapter
+
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        albumAdapter = AlbumsAdapter()
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,7 +37,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupAlbumsAdapter() {
-        Timber.i("Setting up albums adapter")
+        binding.rvAlbums.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvAlbums.adapter = albumAdapter
+
+        albumAdapter.setOnLocationClickListener {
+            Timber.d("Clicking on Album")
+        }
     }
 
     override fun onDestroyView() {
