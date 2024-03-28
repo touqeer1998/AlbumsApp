@@ -46,12 +46,17 @@ class AlbumViewHolder private constructor(
     private val binding: RvAlbumsBinding, private val listener: OnAlbumClick
 ) : RecyclerView.ViewHolder(binding.root) {
 
+    /**
+     *
+     *
+     * @param album
+     */
     fun bind(album: Album) {
+        binding.album = album
         binding.imageLoader.visibility = View.VISIBLE
         binding.ivThumbnail.visibility = View.GONE
         val placeHolder =
             ContextCompat.getDrawable(itemView.context, R.drawable.ic_launcher_background)
-        binding.tvTitle.text = album.title
         Glide.with(itemView.context).load(album.thumbnailUrl)
             .apply(RequestOptions().placeholder(placeHolder))
             .listener(object : RequestListener<Drawable> {
@@ -61,7 +66,6 @@ class AlbumViewHolder private constructor(
                     target: Target<Drawable>?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    Timber.i("loading failed")
                     binding.imageLoader.visibility = View.GONE
                     return false
                 }
@@ -73,7 +77,6 @@ class AlbumViewHolder private constructor(
                     dataSource: DataSource?,
                     isFirstResource: Boolean
                 ): Boolean {
-                    Timber.i("sucess")
                     binding.imageLoader.visibility = View.GONE
                     binding.ivThumbnail.visibility = View.VISIBLE
                     return false
