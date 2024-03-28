@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.albumsapp.R
 import com.example.albumsapp.databinding.FragmentHomeBinding
 import com.example.albumsapp.modules.home.utils.AlbumsAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -57,8 +58,12 @@ class HomeFragment : Fragment() {
         binding.rvAlbums.adapter = albumAdapter
 
         albumAdapter.setOnLocationClickListener {
-            Timber.d("Clicking on Album")
+            navigateToImageFragment()
         }
+    }
+
+    private fun navigateToImageFragment() {
+        findNavController().navigate(R.id.action_homeFragment_to_imageFragment)
     }
 
     override fun onDestroyView() {

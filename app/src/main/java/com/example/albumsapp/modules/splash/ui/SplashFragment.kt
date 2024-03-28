@@ -1,4 +1,4 @@
-package com.example.albumsapp.modules.home.ui
+package com.example.albumsapp.modules.splash.ui
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.albumsapp.MainActivity
 import com.example.albumsapp.R
 import com.example.albumsapp.databinding.FragmentSplashBinding
+import com.example.albumsapp.modules.home.ui.AlbumViewModel
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
