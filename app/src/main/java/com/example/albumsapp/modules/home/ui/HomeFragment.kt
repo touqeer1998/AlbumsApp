@@ -1,4 +1,4 @@
-package com.example.albumsapp.modules.albums.ui
+package com.example.albumsapp.modules.home.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.albumsapp.databinding.FragmentHomeBinding
-import com.example.albumsapp.modules.albums.utils.AlbumsAdapter
+import com.example.albumsapp.modules.home.utils.AlbumsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 

@@ -1,4 +1,4 @@
-package com.example.albumsapp.modules.albums.ui
+package com.example.albumsapp.modules.home.ui
 
 import android.os.Bundle
 import android.os.CountDownTimer

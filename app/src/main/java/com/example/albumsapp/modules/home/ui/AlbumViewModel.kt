@@ -1,11 +1,11 @@
-package com.example.albumsapp.modules.albums.ui
+package com.example.albumsapp.modules.home.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.albumsapp.modules.albums.domain.AlbumRepository
-import com.example.albumsapp.modules.albums.models.Album
+import com.example.albumsapp.modules.home.domain.AlbumRepository
+import com.example.albumsapp.modules.home.models.Album
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber

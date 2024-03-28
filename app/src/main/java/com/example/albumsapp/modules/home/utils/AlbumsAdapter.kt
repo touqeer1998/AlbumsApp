@@ -1,4 +1,4 @@
-package com.example.albumsapp.modules.albums.utils
+package com.example.albumsapp.modules.home.utils
 
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
@@ -16,8 +16,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.example.albumsapp.R
 import com.example.albumsapp.databinding.RvAlbumsBinding
-import com.example.albumsapp.modules.albums.models.Album
-import timber.log.Timber
+import com.example.albumsapp.modules.home.models.Album
 
 fun interface OnAlbumClick {
     fun onAlbumClick(album: Album)

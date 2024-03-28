@@ -1,4 +1,4 @@
-package com.example.albumsapp.modules.albums.models
+package com.example.albumsapp.modules.home.models
 
 data class Album(
     val id: Long,

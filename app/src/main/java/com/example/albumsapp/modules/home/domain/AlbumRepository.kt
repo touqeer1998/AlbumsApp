@@ -1,7 +1,7 @@
-package com.example.albumsapp.modules.albums.domain
+package com.example.albumsapp.modules.home.domain
 
 import com.example.albumsapp.api.album.AlbumApi
-import com.example.albumsapp.modules.albums.models.Album
+import com.example.albumsapp.modules.home.models.Album
 import timber.log.Timber
 import javax.inject.Inject
 
