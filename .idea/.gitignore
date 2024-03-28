@@ -4,3 +4,5 @@
 deploymentTargetDropDown.xml
 misc.xml
 compiler.xml
+sonarlint
+appInsightsSettings.xml
