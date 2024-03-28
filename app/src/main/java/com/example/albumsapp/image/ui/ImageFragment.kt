@@ -1,5 +1,7 @@
 package com.example.albumsapp.image.ui
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -52,12 +54,24 @@ class ImageFragment : Fragment() {
         handleImage(album.url ?: placeHolderUrl)
 
         binding.btnShare.setOnClickListener {
-            handleShareClick()
+            handleShareClick(album.url ?: placeHolderUrl)
         }
     }
 
-    private fun handleShareClick() {
-        Timber.i("clicking on share")
+    @SuppressLint("QueryPermissionsNeeded")
+    private fun handleShareClick(url: String) {
+        try {
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "image/*"
+            shareIntent.putExtra(Intent.EXTRA_STREAM, url)
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "Sharing an image")
+            val chooser = Intent.createChooser(shareIntent, "Share Image")
+            if (shareIntent.resolveActivity(requireContext().packageManager) != null) {
+                startActivity(chooser)
+            }
+        } catch (e: Exception) {
+            Timber.e("handleShareClick :$e")
+        }
     }
 
     private fun handleImage(url: String) {
