@@ -1,13 +1,23 @@
 package com.example.albumsapp.modules.albums.utils
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
+import com.example.albumsapp.R
 import com.example.albumsapp.databinding.RvAlbumsBinding
 import com.example.albumsapp.modules.albums.models.Album
+import timber.log.Timber
 
 fun interface OnAlbumClick {
     fun onAlbumClick(album: Album)
@@ -37,9 +47,38 @@ class AlbumViewHolder private constructor(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(album: Album) {
+        binding.imageLoader.visibility = View.VISIBLE
+        binding.ivThumbnail.visibility = View.GONE
+        val placeHolder =
+            ContextCompat.getDrawable(itemView.context, R.drawable.ic_launcher_background)
         binding.tvTitle.text = album.title
-        binding.ivThumbnail.setImageURI(album.thumbnailUrl.toUri())
+        Glide.with(itemView.context).load(album.thumbnailUrl)
+            .apply(RequestOptions().placeholder(placeHolder))
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    Timber.i("loading failed")
+                    binding.imageLoader.visibility = View.GONE
+                    return false
+                }
 
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    Timber.i("sucess")
+                    binding.imageLoader.visibility = View.GONE
+                    binding.ivThumbnail.visibility = View.VISIBLE
+                    return false
+                }
+            }).into(binding.ivThumbnail)
         binding.root.setOnClickListener {
             listener.onAlbumClick(album)
         }
