@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -56,6 +57,14 @@ class ImageFragment : Fragment() {
         binding.btnShare.setOnClickListener {
             handleShareClick(album.url ?: placeHolderUrl)
         }
+
+        binding.btnNext.setOnClickListener {
+            navigateToConfirmationFragment()
+        }
+    }
+
+    private fun navigateToConfirmationFragment() {
+        findNavController().navigate(R.id.action_imageFragment_to_confirmationFragment)
     }
 
     @SuppressLint("QueryPermissionsNeeded")

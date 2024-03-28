@@ -39,5 +39,17 @@
         <argument
             android:name="Album"
             app:argType="com.example.albumsapp.image.model.AlbumParcelable" />
+        <action
+            android:id="@+id/action_imageFragment_to_confirmationFragment"
+            app:destination="@id/confirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmationFragment"
+        android:name="com.example.albumsapp.confirmation.ui.ConfirmationFragment"
+        android:label="fragment_confirmation"
+        tools:layout="@layout/fragment_confirmation">
+        <action
+            android:id="@+id/action_confirmationFragment_to_homeFragment2"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

@@ -1,14 +1,19 @@
 <resources>
     <string name="app_name">AlbumsApp</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
+
     <string name="splash_fragment_label">Splash Fragment</string>
     <string name="home_fragment_label">Home Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="thumbnail_of_album_image">thumbnail of album image</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="full_image">full image</string>
     <string name="share_image_button">share image button</string>
+    <string name="next_button_to_go_on_next_screen">next button. to go on next screen</string>
+    <string name="do_you_really_want_exist_the_app">Do you really want exist the app</string>
+    <string name="home">Home</string>
+    <string name="exit">Exit</string>
+    <string name="exit_details">Exit button will close the application and if you click home button then ues will be navigatted to home screen.</string>
 </resources>
