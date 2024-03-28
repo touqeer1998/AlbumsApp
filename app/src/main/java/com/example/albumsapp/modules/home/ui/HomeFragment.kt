@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.albumsapp.R
 import com.example.albumsapp.databinding.FragmentHomeBinding
+import com.example.albumsapp.image.model.AlbumParcelable
 import com.example.albumsapp.modules.home.utils.AlbumsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -58,12 +58,14 @@ class HomeFragment : Fragment() {
         binding.rvAlbums.adapter = albumAdapter
 
         albumAdapter.setOnLocationClickListener {
-            navigateToImageFragment()
+            navigateToImageFragment(it.title, it.url)
         }
     }
 
-    private fun navigateToImageFragment() {
-        findNavController().navigate(R.id.action_homeFragment_to_imageFragment)
+    private fun navigateToImageFragment(title: String, url: String) {
+        val albumParcelable = AlbumParcelable(title, url)
+        val action = HomeFragmentDirections.actionHomeFragmentToImageFragment(albumParcelable)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {

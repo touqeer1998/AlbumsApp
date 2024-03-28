@@ -26,7 +26,7 @@
         android:id="@+id/homeFragment"
         android:name="com.example.albumsapp.modules.home.ui.HomeFragment"
         android:label="@string/home_fragment_label"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_imageFragment"
             app:destination="@id/imageFragment" />
@@ -35,5 +35,9 @@
         android:id="@+id/imageFragment"
         android:name="com.example.albumsapp.image.ui.ImageFragment"
         android:label="fragment_image"
-        tools:layout="@layout/fragment_image" />
+        tools:layout="@layout/fragment_image">
+        <argument
+            android:name="Album"
+            app:argType="com.example.albumsapp.image.model.AlbumParcelable" />
+    </fragment>
 </navigation>
