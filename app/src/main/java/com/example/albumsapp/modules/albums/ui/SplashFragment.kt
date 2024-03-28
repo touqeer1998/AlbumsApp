@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.albumsapp.MainActivity
 import com.example.albumsapp.R
@@ -18,14 +19,14 @@ class SplashFragment : Fragment() {
 
     private var _binding: FragmentSplashBinding? = null
     private lateinit var countDownTimer: CountDownTimer
+    private val albumViewModel: AlbumViewModel by activityViewModels()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
 
         _binding = FragmentSplashBinding.inflate(inflater, container, false)
@@ -36,6 +37,9 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //making network class here in splash screen for better user experience on home screen
+        albumViewModel.fetchAlbums()
+
         // Starting countdown from 5 seconds and update TextView
         countDownTimer = object : CountDownTimer(5000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -44,11 +48,8 @@ class SplashFragment : Fragment() {
             }
 
             override fun onFinish() {
-                // Timer finished, do any necessary actions here
+                // Timer finished, now navigating to home screen
                 navigateToHome()
-                // removing the fragment
-//                activity?.supportFragmentManager?.beginTransaction()?.remove(this@SplashFragment)
-//                    ?.commitAllowingStateLoss()
             }
         }.start()
 

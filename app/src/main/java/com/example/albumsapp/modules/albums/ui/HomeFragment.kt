@@ -5,17 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.albumsapp.databinding.FragmentHomeBinding
 import com.example.albumsapp.modules.albums.utils.AlbumsAdapter
+import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
+    private val albumViewModel: AlbumViewModel by activityViewModels()
 
     private lateinit var albumAdapter: AlbumsAdapter
 
@@ -33,7 +37,19 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //adapters
         setupAlbumsAdapter()
+
+        //observers
+        observeAlbums()
+    }
+
+    private fun observeAlbums() {
+        albumViewModel.albums.observe(viewLifecycleOwner) {
+            it?.let {
+                albumAdapter.submitList(it)
+            }
+        }
     }
 
     private fun setupAlbumsAdapter() {
