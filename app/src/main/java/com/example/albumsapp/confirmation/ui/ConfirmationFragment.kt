@@ -50,4 +50,10 @@ class ConfirmationFragment : Fragment() {
     private fun closeApp() {
         (activity as MainActivity).finish()
     }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).showBackButton()
+        (activity as MainActivity).showToolBar()
+    }
 }

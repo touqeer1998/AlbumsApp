@@ -17,6 +17,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import com.example.albumsapp.MainActivity
 import com.example.albumsapp.R
 import com.example.albumsapp.databinding.FragmentImageBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -109,5 +110,11 @@ class ImageFragment : Fragment() {
                     return false
                 }
             }).into(binding.ivImage)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).showBackButton()
+        (activity as MainActivity).showToolBar()
     }
 }
